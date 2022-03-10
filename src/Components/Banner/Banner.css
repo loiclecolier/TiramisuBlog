@@ -1,0 +1,75 @@
+.banner {
+    margin-top: 70px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: center / cover no-repeat url('banner.jpg') fixed;
+}
+
+.banner-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    margin: 5vw;
+    padding: 15px;
+    width: 400px;
+    height: 27.5vh;
+    background-color: rgb(250, 250, 250);
+    border-radius: 5px;
+    animation: animate-slide 1.5s;
+}
+
+.banner-box h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.banner-box hr {
+    border-top: 1px solid #222;
+    width: 20%;
+}
+
+.banner-box h2 {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: 15px;
+    right: 5px;
+    width: 40px;
+    cursor: pointer;
+    animation: animate-icon-scroll 2.5s infinite;
+}
+
+.scroll-down svg {
+    color:#222;
+}
+  
+@keyframes animate-slide {
+    0% { transform: translateX(100vw); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes animate-icon-scroll {
+    0% { transform: translateY(10px); }
+    50% { transform: translateY(0); }
+    100% { transform: translateY(10px); }
+}
+
+@media screen and (max-width: 700px) {
+
+    .banner {
+        justify-content: center;
+        background-position: 25% 100%;
+    }
+
+    .banner-box {
+        width: 300px;
+        height: 20vh;
+    }
+
+}
