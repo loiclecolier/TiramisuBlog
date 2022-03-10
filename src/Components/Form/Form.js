@@ -4,27 +4,21 @@ import "./Form.css";
 
 export default function Form() {
 
-    /* Pour utiliser la méthode dispatch */
     const dispatch = useDispatch();
 
-    /* A chaque envoi du formulaire */
     const handleForm = e => {
-        /* On prévient le comportement par défaut (évite que la page ne recharge) */
         e.preventDefault();
 
-        /* Création d'un nouvel article avec la valeur des inputs */
         const newArticle = {
             title: inputsRef.current[0].value,
             body: inputsRef.current[1].value
         }
 
-        /* dispatch permet d'envoyer une action pour déclencher un changement d'état */
         dispatch({
-            type: 'ADDARTICLE', /* action */
-            payload: newArticle /* data à passer (payload) */
+            type: 'ADDARTICLE',
+            payload: newArticle
         })
 
-        /* Réinitialisation du formulaire */
         e.target.reset();
     };
 
