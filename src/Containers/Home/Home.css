@@ -1,21 +1,4 @@
-.container-home {
+#container-home {
     max-width: 1300px;
-}
-
-.home-title {
-    text-align: center;
-    padding: 40px 0 20px;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-}
-
-.not-article-title {
-    font-size: clamp(1rem, 3vw, 2rem);
-    color: rgba(34, 34, 34, .5);
-}
-
-.container-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 30px;
+    margin: auto;
 }

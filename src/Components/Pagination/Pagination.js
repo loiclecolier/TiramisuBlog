@@ -52,10 +52,10 @@ const Pagination = props => {
         }
 		
         return (
-          <Link to="container-home" spy={true} smooth={true} offset={-70}>
+          <Link to="container-home" spy={true} smooth={true} offset={-70} key={uuidv4()}>
             <li
               className={`pagination-item ${pageNumber === currentPage ? 'selected' : ''}`}
-              onClick={() => onPageChange(pageNumber)} key={uuidv4()}
+              onClick={() => onPageChange(pageNumber)}
             >
               {pageNumber}
             </li>
