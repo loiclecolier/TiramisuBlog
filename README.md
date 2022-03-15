@@ -1,6 +1,6 @@
 # Objective of the Tiramisu project
 
-The goal of the project is to train me in React.
+The goal of the project is to train me in React. Blog Tiramisu allows me to learn quite a few features of React (see to do list).
 
 # To do list
 
