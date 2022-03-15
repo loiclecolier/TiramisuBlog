@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 let PageSize = 12;
 
-export default function Search({data}) {
+export default function Search({isLoading, data}) {
 
     const [searchInput, setSearchInput] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
@@ -49,13 +49,22 @@ export default function Search({data}) {
                 </div>
             </div>
             <div className="container-cards">
-                {paginatedData.length > 0 ?
-                    paginatedData.map(article => {
-                        return (
-                        <Card title={article.title} body={article.body} key={uuidv4()}></Card>
-                        )
-                    })
-                    : <h2 className="article-not-found">Aucun article ne correspond à votre recherche : {searchInput}</h2>
+                {isLoading ?
+                    <div className="loading-icon"></div>
+                    :
+                    paginatedData.length > 0 ?
+                        paginatedData.map(article => {
+                            return (
+                            <Card
+                                article={article}
+                                key={uuidv4()}>
+                            </Card>
+                            )
+                        })
+                    : searchInput === '' ?
+                        <h2 className="article-not-found">Aucun article disponible actuellement.</h2>
+                        :
+                        <h2 className="article-not-found">Aucun article ne correspond à votre recherche : {searchInput}</h2>
                 }
             </div>
             <Pagination

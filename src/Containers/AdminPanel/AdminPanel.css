@@ -1,0 +1,17 @@
+.admin-panel {
+    position: relative;
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-admin {
+    width: 75%;
+    margin-left: 25%;
+    padding: 30px;
+}
+
+.admin-panel-title {
+    margin-bottom: 30px;
+    text-align: left;
+}

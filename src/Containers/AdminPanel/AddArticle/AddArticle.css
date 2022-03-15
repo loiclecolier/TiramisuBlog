@@ -1,0 +1,144 @@
+.form-add-article {
+    margin-top: 20px;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-add-article label {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+}
+
+.form-add-article input {
+    max-width: 500px;
+}
+
+.form-add-article .inp-title, .form-add-article .inp-content {
+    padding: 10px;
+    height: 40px;
+    background: none;
+    border: 1px solid rgb(206, 206, 206);
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: clamp(0.75rem, 2vw, 1rem);
+    color: #222;
+    outline: none;
+    background: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: .3s;
+}
+
+.form-add-article .inp-image {
+    display: none;
+}
+
+.form-add-article .button-add-image {
+    max-width: 250px;
+    margin-bottom: 5px;
+    background-color: rgb(240, 240, 240);
+    border: 1px solid rgb(206, 206, 206);
+    font-size: clamp(0.75rem, 2vw, 1rem);
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.form-add-article .button-add-image:hover {
+    background-color: rgb(230, 230, 230);
+}
+
+.form-add-article .formats-add-image {
+    margin-bottom: 20px;
+    font-size: clamp(0.6rem, 2vw, 0.8rem);
+}
+
+.form-add-article input[type='text']:focus, .form-add-article textarea:focus {
+    border: 2px solid #222;
+}
+
+.form-add-article textarea {
+    min-height: 200px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-add-article button {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: clamp(0.75rem, 2vw, 1rem);
+    border: 1px solid #865240;
+    border-radius: 5px;
+    max-width: 250px;
+    padding: 5px 0;
+    cursor: pointer;
+    background-color: #865240;
+    color: #FFF;
+    transition: .3s;
+}
+
+.form-add-article button:hover {
+    background-color: #643a2c;
+}
+
+.form-add-article .form-validation {
+    max-width: 900px;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: rgb(134, 0, 0);
+    border: 1px solid rgb(134, 0, 0);
+    background-color: rgb(255, 230, 230);
+    font-size: clamp(0.7rem, 1vw, 0.9rem);
+}
+
+.form-add-article .form-validation-file {
+    max-width: 500px;
+}
+
+.form-add-article .preview-image {
+    max-width: 500px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.content-admin .loading-overlay {
+    z-index: 99;
+    overflow-y: hidden;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, .5);
+}
+
+.content-admin .loading-icon {
+    position: fixed;
+    top: calc(50% - 80px);
+    left: calc(50% - 80px);
+    width: 80px;
+    height: 80px;
+}
+
+.content-admin .loading-icon:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #222;
+    border-color: #222 transparent #222 transparent;
+    animation: animate-loading 1.2s linear infinite;
+}
+
+@keyframes animate-loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+  

@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom'
 import { UserContext } from '../../context/userContext';
 import { Navigate } from "react-router-dom";
 import './AdminPanel.css'
+import NavbarAdmin from '../../Components/NavbarAdmin/NavbarAdmin';
 
 export default function AdminPanel() {
 
@@ -12,8 +13,11 @@ export default function AdminPanel() {
       return <Navigate to="/tb-admin" />
     }
 
-    return <>
-        <div style={{marginTop: "70px"}}>AdminPanel</div>
-        <Outlet />
-    </>
+    return <div className="admin-panel">
+        <NavbarAdmin />
+        <div className="content-admin">
+          <h1 className='admin-panel-title'>Tableau de bord</h1>
+          <Outlet />
+        </div>
+    </div>
 }

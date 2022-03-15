@@ -14,6 +14,9 @@ import NotFound from './Containers/NotFound/NotFound'
 import LogOut from './Components/LogOut/LogOut'
 import { UserContext } from './context/userContext'
 import RedirectUser from './Containers/RedirectUser/RedirectUser'
+import HomeAdmin from './Containers/AdminPanel/HomeAdmin/HomeAdmin'
+import ArticlesAdmin from './Containers/AdminPanel/ArticlesAdmin/ArticlesAdmin'
+import ProfileAdmin from './Containers/AdminPanel/ProfileAdmin/ProfileAdmin'
 
 function App() {
 
@@ -34,7 +37,10 @@ function App() {
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/articles/:slug" element={<Article/>}/>
           <Route path="/tb-admin" element={<RedirectUser/>}>
+            <Route path="/tb-admin/home" element={<HomeAdmin/>}/>
             <Route path="/tb-admin/ecrire" element={<AddArticle/>}/>
+            <Route path="/tb-admin/articles" element={<ArticlesAdmin/>}/>
+            <Route path="/tb-admin/profil" element={<ProfileAdmin/>}/>
           </Route>
           <Route path="*" element={<NotFound/>}/>
         </Routes>

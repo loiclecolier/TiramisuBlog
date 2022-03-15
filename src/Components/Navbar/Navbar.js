@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import './Navbar.css'
 import { Link, NavLink } from 'react-router-dom'
+import { UserContext } from '../../context/userContext';
+
 
 export default function Navbar() {
 
     const [toggleMenu, setToggleMenu] = useState(false);
+
+    const { currentUser } = useContext(UserContext);
 
     const toggleNav = () => {
         setToggleMenu(!toggleMenu);
@@ -38,6 +42,15 @@ export default function Navbar() {
                         Contact
                     </NavLink>
                 </li>
+                {currentUser &&
+                    <li className="navbar-menu-item">
+                        <NavLink to="/tb-admin/home" onClick={toggleNav} className={({isActive}) => {
+                            return isActive ? "active-link" : ""
+                        }}>
+                            Admin
+                        </NavLink>
+                    </li>
+                }
             </ul>
             <ul className="navbar-social">
                 <a href="#">

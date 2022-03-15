@@ -6,14 +6,18 @@ export default function Article() {
 
     const location = useLocation();
 
+    const { title, content, srcImage } = location.state;
+
     useEffect(() => {
         window.scrollTo({ behavior: 'auto', top: '0px' });
     }, [])
 
     return (
         <div className="article-content">
-            <h2>{location.state.title}</h2>
-            <p>{location.state.body}</p>
+            <h2>{title}</h2>
+            <img src={srcImage} alt="" />
+            {/* Use dangerouslySetInnerHTML for markdown content */}
+            <p dangerouslySetInnerHTML={{ __html: content }}></p>
         </div>
     )
 }

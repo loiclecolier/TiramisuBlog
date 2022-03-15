@@ -6,6 +6,7 @@
     display: flex;
     justify-content: space-evenly;
     margin-top: 50px;
+    z-index: 1;
 }
 
 .footer-menu {

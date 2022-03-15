@@ -25,7 +25,7 @@ function SignIn() {
 
         try {
             await signIn(inputs.current[0].value, inputs.current[1].value);
-            navigate("/tb-admin");
+            navigate("/tb-admin/home");
         } catch (err) {
             if (err.code === "auth/user-not-found" ||
                 err.code === "auth/wrong-password") {
