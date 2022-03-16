@@ -1,14 +1,103 @@
 .article-content {
-    max-width: 700px;
+    max-width: 1100px;
     min-width: 300px;
-    margin: 100px auto;
+    margin: 110px auto 0;
 }
 
-.article-content h2 {
-    font-size: 45px;
-    margin-bottom: 20px;
+.article-content > * {
+    padding: 0 3vw;
 }
 
-.article-content p {
-    font-size: 25px;
+.article-content h1::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 2px;
+    background-color: #222;
+    margin: 20px auto;
+}
+
+.article-content .meta-infos {
+    margin-bottom: 30px;
+    text-align: center;
+    color: #888;
+}
+
+.article-content .meta-infos span {
+    font-style: italic;
+}
+
+.article-content .main-image {
+    display: block;
+    object-fit: cover;
+    margin: auto;
+    border-radius: 5px;
+    width: 100%;
+    max-height: 75vh;
+}
+
+@media screen and (max-width: 1100px) {
+    .article-content .main-image {
+        padding: 0;
+    }
+}
+
+
+.article-content p,
+.article-content ul,
+.article-content ol {
+    margin: 20px 0 20px 0;
+}
+
+.article-content ul,
+.article-content ol {
+    padding-left: 20px;
+}
+
+.article-content strong {
+    font-weight: 600;
+}
+
+.article-content em {
+    font-style: italic;
+}
+
+.article-content a {
+    font-weight: 600;
+    color: #865240;
+}
+
+.article-content a:hover {
+    text-decoration: underline;
+}
+
+.article-content ul {
+    list-style-type: circle;
+}
+
+.article-content h2,
+.article-content h3 {
+    margin-top: 30px;
+}
+
+.article-content h4,
+.article-content h5,
+.article-content h6 {
+    margin-top: 20px;
+}
+
+.article-content h2::after {
+    content: '';
+    display: block;
+    width: 5%;
+    border-top: 1px groove #222;
+    margin-top: 10px;
+}
+
+.article-content .content img {
+    display: block;
+    max-width: 500px;
+    border: 5px solid #FFF;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }

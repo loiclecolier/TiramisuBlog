@@ -6,6 +6,10 @@ import { db, storage } from '../../../firebase-config';
 import { UserContext } from '../../../context/userContext';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid'
+import { EditorState, convertToRaw } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import draftToHtml from 'draftjs-to-html';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 export default function AddArticle() {
 
@@ -20,6 +24,11 @@ export default function AddArticle() {
 
     const [validation, setValidation] = useState("");
     const [validationFile, setValidationFile] = useState("");
+
+    const [editorState, setEditorState] = useState(() =>
+        EditorState.createEmpty()
+    );
+    const [dataEditor, setDataEditor] = useState("");
 
     const inputs = useRef([]);
     const addInputs = (el) => {
@@ -60,6 +69,13 @@ export default function AddArticle() {
         }
     }
 
+    // manage editor component state
+    const updateTextDescription = (state) => {
+        setEditorState(state);
+        const data = convertToRaw(state.getCurrentContent());
+        setDataEditor(draftToHtml(data));
+    };
+
     const articlesCollectionRef = collection(db, "articles");
 
     const handleForm = async (e) => {
@@ -85,7 +101,7 @@ export default function AddArticle() {
         // add article in the db
         await addDoc(articlesCollectionRef, { 
             title: inputs.current[0].value,
-            content: inputs.current[2].value,
+            content: dataEditor,
             urlImage: urlImage,
             author: { name: pseudoUser, id: currentUser.uid },
             createdAt: Date.now()
@@ -141,14 +157,33 @@ export default function AddArticle() {
                     accept="image/png, image/jpeg, image/gif"
                 />
 
-              <label htmlFor="article">Votre article</label>
-              <textarea
-                  ref={addInputs}
-                  required
-                  id="article"
-                  placeholder="Contenu de votre article"
-                  className="inp-content"
-              ></textarea>
+                <label htmlFor="article">Votre article</label>
+                <Editor
+                    editorState={editorState}
+                    wrapperClassName="wrapper-editor-article"
+                    editorClassName="editor-article"
+                    toolbarClassName="toolbar-editor-article"
+                    onEditorStateChange={updateTextDescription}
+                    toolbar={{
+                        options: ['inline', 'blockType', 'list', 'link', 'emoji', 'image', 'history'],
+                        inline: {
+                            options: ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript']
+                        },
+                        blockType: {
+                            options: ['Normal', 'H2', 'H3', 'H4', 'H5', 'H6']
+                        },
+                        list: {
+                            options: ['unordered', 'ordered']
+                        }
+                    }}
+                />
+                <textarea
+                    ref={addInputs}
+                    disabled
+                    value={dataEditor}
+                    id="article"
+                    className="inp-content"
+                ></textarea>
 
               {validation && (
                   <p className="form-validation">{validation}</p>

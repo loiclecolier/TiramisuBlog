@@ -6,7 +6,7 @@ import { storage } from '../../firebase-config';
 
 export default function Card(props) {
 
-  const { title, content, urlImage } = props.article;
+  const { title, content, urlImage, author, createdAt } = props.article;
   const [srcImage, setSrcImage] = useState('');
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function Card(props) {
   return (
     <Link
         to={`articles/${title.replace(/\s+/g, '-').trim()}`}
-        state={{ title, content, srcImage }}
+        state={{ title, content, srcImage, author, createdAt }}
     >
       <div className="card">
           {srcImage &&
@@ -42,7 +42,7 @@ export default function Card(props) {
           }
           <div className="description-card">
             <h2>{title.length > 40 ? title.substring(0, 40) + '...' : title}</h2>
-            <p>Lire l'article	&#129122;</p>
+            <p>Lire la recette	&#129122;</p>
           </div>
       </div>
     </Link>

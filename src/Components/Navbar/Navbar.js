@@ -25,7 +25,7 @@ export default function Navbar() {
                     <NavLink to="/" onClick={toggleNav} className={({isActive}) => {
                         return isActive ? "active-link" : ""
                     }}>
-                        Articles
+                        Recettes
                     </NavLink>
                 </li>
                 <li className="navbar-menu-item">

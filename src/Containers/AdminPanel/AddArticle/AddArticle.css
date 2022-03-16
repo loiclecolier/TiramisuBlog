@@ -13,6 +13,10 @@
     max-width: 500px;
 }
 
+.form-add-article .inp-content {
+    display: none;
+}
+
 .form-add-article .inp-title, .form-add-article .inp-content {
     padding: 10px;
     height: 40px;
@@ -58,9 +62,18 @@
     border: 2px solid #222;
 }
 
-.form-add-article textarea {
+.form-add-article .editor-article {
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 0 15px;
     min-height: 200px;
-    font-family: Arial, Helvetica, sans-serif;
+    max-height: 65vh;
+}
+
+.form-add-article .toolbar-editor-article {
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 5px;
 }
 
 .form-add-article button {

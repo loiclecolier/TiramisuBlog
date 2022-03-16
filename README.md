@@ -12,7 +12,7 @@ The goal of the project is to train me in React. Blog Tiramisu allows me to lear
 - [x] Search bar for articles
 - [x] Authentication with Firebase
 - [ ] CRUD Articles with Firebase
-- [ ] Markdown editor for writing article
+- [x] Editor with toolbar for writing article
 - [x] Dashboard for admin with private routes (user authenticated)
 - [ ] Validation forms (Login, Contact and Write Article)
 - [ ] Contact page with sending emails

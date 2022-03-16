@@ -21,7 +21,7 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
@@ -34,6 +34,22 @@ h1 {
 h2 {
   font-weight: 400;
   font-size: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+h3 {
+  font-size: clamp(1.2rem, 3vw, 2.25rem);
+}
+
+h4 {
+  font-size: clamp(1.1rem, 3vw, 2rem);
+}
+
+h5 {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+h6 {
+  font-size: clamp(0.9rem, 2vw, 1.25rem);
 }
 
 p {

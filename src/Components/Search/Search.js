@@ -4,7 +4,7 @@ import Card from '../Card/Card';
 import Pagination from '../Pagination/Pagination';
 import { v4 as uuidv4 } from 'uuid'
 
-let PageSize = 12;
+let PageSize = 6;
 
 export default function Search({isLoading, data}) {
 
@@ -35,13 +35,13 @@ export default function Search({isLoading, data}) {
     return (
         <>
             <div className="header-articles">
-                <h1 className="home-title">{searchInput === '' ? "Tous les articles" : "Recherche"}</h1>
+                <h1 className="home-title">{searchInput === '' ? "Toutes les recettes" : "Recherche"}</h1>
                 <div className="search">
                     <input
                         type="search"
                         onChange={handleChange}
                         value={searchInput}
-                        placeholder="Rechercher un article..."
+                        placeholder="Rechercher une recette..."
                         maxLength="50"
                         className="input-search"
                     />
@@ -62,9 +62,9 @@ export default function Search({isLoading, data}) {
                             )
                         })
                     : searchInput === '' ?
-                        <h2 className="article-not-found">Aucun article disponible actuellement.</h2>
+                        <h2 className="article-not-found">Aucune recette disponible actuellement.</h2>
                         :
-                        <h2 className="article-not-found">Aucun article ne correspond à votre recherche : {searchInput}</h2>
+                        <h2 className="article-not-found">Aucune recette ne correspond à votre recherche : {searchInput}</h2>
                 }
             </div>
             <Pagination

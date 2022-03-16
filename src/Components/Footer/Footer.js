@@ -7,7 +7,7 @@ export default function Footer() {
     <div className="footer">
       <ul className="footer-menu">
           <li className="footer-menu-item">
-              <Link to="/">Articles</Link>
+              <Link to="/">Recettes</Link>
           </li>
           <li className="footer-menu-item">
               <Link to="/a-propos">À propos</Link>

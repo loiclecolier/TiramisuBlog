@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { UserContext } from '../../context/userContext';
 import { Navigate } from "react-router-dom";
@@ -8,6 +8,10 @@ import NavbarAdmin from '../../Components/NavbarAdmin/NavbarAdmin';
 export default function AdminPanel() {
 
     const { currentUser } = useContext(UserContext);
+
+    useEffect(() => {
+      window.scrollTo({ behavior: 'auto', top: '0px' });
+    }, [])
 
     if (!currentUser) {
       return <Navigate to="/tb-admin" />
