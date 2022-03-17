@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import './Navbar.css'
 import { Link, NavLink } from 'react-router-dom'
 import { UserContext } from '../../context/userContext';
+import Logo from '../../assets/logo512.png'
 
 
 export default function Navbar() {
@@ -17,7 +18,7 @@ export default function Navbar() {
     return (
         <nav className="header">
             <Link to="/" className="logo">
-                <img src={"/logo512.png"} alt="Tiramisu Logo" />
+                <img src={Logo} alt="Tiramisu Logo" />
                 <h1>Tiramisu</h1>
             </Link>
             <ul className={toggleMenu ? "navbar-menu show-nav" : "navbar-menu"}>

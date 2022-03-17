@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Footer.css'
+import Logo from '../../assets/logo512.png'
 
 export default function Footer() {
   return (
@@ -17,7 +18,7 @@ export default function Footer() {
           </li>
       </ul>
       <Link to="/" className="logo">
-        <img src={"/logo512.png"} alt="Tiramisu Logo" />
+        <img src={Logo} alt="Tiramisu Logo" />
         <h1>Tiramisu</h1>
       </Link>
       <ul className="footer-social">

@@ -1,5 +1,6 @@
 {
-  "name": "blog-react",
+  "homepage": "https://loiclecolier.github.io/tiramisu-blog",
+  "name": "tiramisu-blog",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
