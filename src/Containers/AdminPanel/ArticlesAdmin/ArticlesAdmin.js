@@ -16,8 +16,8 @@ export default function ArticlesAdmin() {
                 {isLoading ?
                     <div className="loading-icon"></div>
                     :
-                    articles.length > 0 ?
-                      articles.map(article => {
+                    articles.filter(article => article.author.id === currentUser.uid).length > 0 ?
+                      articles.filter(article => article.author.id === currentUser.uid).map(article => {
                           return (
                               <CardAdmin
                                   article={article}
