@@ -1,40 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './Card.css'
 import { Link } from 'react-router-dom'
-import { ref, getDownloadURL } from 'firebase/storage';
-import { storage } from '../../firebase-config';
 
 export default function Card(props) {
 
-  const { title, content, urlImage, author, createdAt } = props.article;
-  const [srcImage, setSrcImage] = useState('');
-
-  useEffect(() => {
-      let isMounted = true;
-
-      // Create a reference to the file we want to download
-      const imageRef = ref(storage, urlImage);
-
-      // Get the download URL
-      getDownloadURL(imageRef)
-        .then((url) => {
-          if (isMounted) { // call only if component is mounted
-            setSrcImage(url);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-
-      // When the component is unmounted
-      return () => { isMounted = false }
-
-  }, [urlImage])
+  const { srcImage, title } = props.article;
 
   return (
     <Link
         to={`articles/${title.replace(/\s+/g, '-').trim()}`}
-        state={{ title, content, srcImage, author, createdAt }}
+        state={props.article}
     >
       <div className="card">
           {srcImage &&

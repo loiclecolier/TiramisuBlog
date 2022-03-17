@@ -27,13 +27,6 @@ export default function NavbarAdmin() {
                         Mes articles
                     </NavLink>
                 </li>
-                <li className="navbar-admin-item">
-                    <NavLink to="/tb-admin/profil" className={({isActive}) => {
-                        return isActive ? "active-link" : ""
-                    }}>
-                        Mon profil
-                    </NavLink>
-                </li>
             </ul>
         </nav>
     )

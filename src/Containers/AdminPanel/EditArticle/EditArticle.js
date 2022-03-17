@@ -1,26 +1,29 @@
-import React, { useState, useRef, useContext } from 'react'
-import './AddArticle.css'
-import { addDoc, collection } from "firebase/firestore"
-import { ref, uploadBytes } from 'firebase/storage';
+import React, { useState, useRef, useContext, useEffect } from 'react'
+import './EditArticle.css'
+import { doc, updateDoc } from "firebase/firestore"
+import { ref, uploadBytes, deleteObject } from 'firebase/storage';
 import { db, storage } from '../../../firebase-config';
-import { UserContext } from '../../../context/userContext';
-import { ArticlesContext } from '../../../context/articlesContext';
-import { useNavigate } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid'
-import { EditorState, convertToRaw } from 'draft-js';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { v4 as uuidv4 } from "uuid";
+import { ArticlesContext } from '../../../context/articlesContext';
 
-export default function AddArticle() {
+export default function EditArticle() {
 
+    const location = useLocation();
+    
     const navigate = useNavigate();
 
-    const { currentUser } = useContext(UserContext);
     const { getArticles } = useContext(ArticlesContext);
 
-    const [image, setImage] = useState(null);
-    const [previewImage, setPreviewImage] = useState(null);
+    const { id, title, content, urlImage, srcImage } = location.state;
+
+    const [image, setImage] = useState(urlImage);
+    const [previewImage, setPreviewImage] = useState(srcImage);
 
     const [loading, setLoading] = useState(false);
 
@@ -30,8 +33,22 @@ export default function AddArticle() {
     const [editorState, setEditorState] = useState(() =>
         EditorState.createEmpty()
     );
-    const [dataEditor, setDataEditor] = useState("");
+    const [dataEditor, setDataEditor] = useState(content);
 
+    // Get values
+    useEffect(() => {
+        inputs.current[0].value = title;
+
+        // parse HTML to draft
+        const contentBlock = htmlToDraft(content);
+        if (contentBlock) {
+            const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
+            const editorState = EditorState.createWithContent(contentState);
+            setEditorState(editorState);
+        }
+    }, [])
+
+    // Select inputs
     const inputs = useRef([]);
     const addInputs = (el) => {
         if (el && !inputs.current.includes(el)) {
@@ -57,16 +74,12 @@ export default function AddArticle() {
         }
     }
 
-    const changePreviewImage = (e) => {
-        const image = inputs.current[1].files[0];
-        if (image !== null) {
-            if (validationImage(image)) {
-                setPreviewImage(URL.createObjectURL(image));
-                setImage(image);
-            }
-            else {
-                setPreviewImage(null);
-                setImage(null);
+    const changePreviewImage = () => {
+        const newImage = inputs.current[1].files[0];
+        if (newImage !== null) {
+            if (validationImage(newImage)) {
+                setPreviewImage(URL.createObjectURL(newImage));
+                setImage(newImage);
             }
         }
     }
@@ -78,35 +91,29 @@ export default function AddArticle() {
         setDataEditor(draftToHtml(data));
     };
 
-    const articlesCollectionRef = collection(db, "articles");
-
+    // Update
     const handleForm = async (e) => {
       e.preventDefault();
 
       setLoading(true);
 
       try {
-        if (image === null) {
-            setValidationFile("Veuillez ajouter une image à l'article.");
-            throw new Error();
-        }
-        // create URL image
-        const urlImage = '/images/' + image.name.substring(0, image.name.length - 4) + '-' + uuidv4();
+        // delete old image
+        const oldImageRef = ref(storage, urlImage);
+        await deleteObject(oldImageRef).catch((err) => console.log(err));
+        // create URL new image
+        const urlNewImage = '/images/' + image.name.substring(0, image.name.length - 4) + '-' + uuidv4();
         // create a reference to the image to be uploaded
-        const imageRef = ref(storage, urlImage);
+        const newImageRef = ref(storage, urlNewImage);
         // upload the image
-        await uploadBytes(imageRef, image);
+        await uploadBytes(newImageRef, image);
 
-        // create pseudo user from email
-        const pseudoUser = currentUser.email.split('@')[0];
-
-        // add article in the db
-        await addDoc(articlesCollectionRef, { 
+        // update article in the db
+        const articleRef = doc(db, "articles", id)
+        await updateDoc(articleRef, { 
             title: inputs.current[0].value,
             content: dataEditor,
-            urlImage: urlImage,
-            author: { name: pseudoUser, id: currentUser.uid },
-            createdAt: Date.now()
+            urlImage: urlNewImage
         }).then(() => setLoading(false));
 
         // Refresh list articles
@@ -128,9 +135,9 @@ export default function AddArticle() {
                 </div>
             }
 
-          <h2>Écrire un article</h2>
+          <h2>Modifier un article</h2>
 
-          <form onSubmit={handleForm} className="form-add-article">
+          <form onSubmit={handleForm} className="form-edit-article">
               <label htmlFor="title">Titre</label>
               <input
                   ref={addInputs}
@@ -142,14 +149,14 @@ export default function AddArticle() {
               />
 
                 <label className="button-add-image" htmlFor="image">
-                    <div>Ajouter une image</div>
+                    <div>Modifier l'image</div>
                 </label>
                 <p className="formats-add-image">
                     Formats autorisés : jpg, jpeg, png, gif<br/>
                     Taille maximale : 1 Mo</p>
-                {validationFile && (
+                {validationFile &&
                     <p className="form-validation form-validation-file">{validationFile}</p>
-                )}
+                }
                 {previewImage &&
                     <img className="preview-image" src={previewImage} alt="Prévisualisation"/>
                 }
@@ -193,7 +200,7 @@ export default function AddArticle() {
               {validation && (
                   <p className="form-validation">{validation}</p>
               )}
-                <button>Publier l'article</button>
+                <button>Modifier l'article</button>
           </form>
       </>
     )

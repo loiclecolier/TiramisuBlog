@@ -8,15 +8,13 @@ import AddArticle from './Containers/AdminPanel/AddArticle/AddArticle'
 import Contact from './Containers/Contact/Contact'
 import Article from './Containers/Article/Article'
 import About from './Containers/About/About'
-import SignIn from './Containers/SignIn/SignIn'
-import AdminPanel from './Containers/AdminPanel/AdminPanel'
 import NotFound from './Containers/NotFound/NotFound'
 import LogOut from './Components/LogOut/LogOut'
 import { UserContext } from './context/userContext'
 import RedirectUser from './Containers/RedirectUser/RedirectUser'
 import HomeAdmin from './Containers/AdminPanel/HomeAdmin/HomeAdmin'
 import ArticlesAdmin from './Containers/AdminPanel/ArticlesAdmin/ArticlesAdmin'
-import ProfileAdmin from './Containers/AdminPanel/ProfileAdmin/ProfileAdmin'
+import EditArticle from './Containers/AdminPanel/EditArticle/EditArticle'
 
 function App() {
 
@@ -40,7 +38,7 @@ function App() {
             <Route path="/tb-admin/home" element={<HomeAdmin/>}/>
             <Route path="/tb-admin/ecrire" element={<AddArticle/>}/>
             <Route path="/tb-admin/articles" element={<ArticlesAdmin/>}/>
-            <Route path="/tb-admin/profil" element={<ProfileAdmin/>}/>
+            <Route path="/tb-admin/edit-article/:slug" element={<EditArticle/>}/>
           </Route>
           <Route path="*" element={<NotFound/>}/>
         </Routes>

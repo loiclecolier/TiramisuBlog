@@ -1,0 +1,123 @@
+.card-admin {
+    display: block;
+}
+
+.card-admin::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background-color: #888;
+    width: 100%;
+}
+
+.card-admin:last-child::after {
+    display: none;
+}
+
+.card-admin:hover {
+    background-color: rgb(240, 240, 240);
+}
+
+.description-card-admin {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.description-card-admin .actions-articles-icons svg:nth-child(2) {
+    color: rgb(172, 0, 0);
+}
+
+.description-card-admin .actions-articles-icons svg {
+    width: 25px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.description-card-admin a {
+    font-size: clamp(0.75rem, 2vw, 1rem);
+}
+
+@media screen and (max-width: 600px) {
+    .description-card-admin .actions-articles-icons svg {
+        width: 15px;
+    }
+}
+
+.overlay-modal {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.modal-delete {
+    position: fixed;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(250, 250, 250);
+    border-radius: 5px;
+    padding: 30px 20px 20px 20px;
+}
+
+.close-modal {
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px 15px;
+}
+
+.modal-delete h2::after {
+    content: '';
+    display: block;
+    border-bottom: 1px solid rgb(206, 206, 206);
+    width: 100%;
+    margin: 10px 0 10px;
+}
+
+.modal-delete p {
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+.modal-delete .btn-modal {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-delete .btn-modal button {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: clamp(0.75rem, 2vw, 1rem);
+    border-radius: 5px;
+    width: 100px;
+    padding: 5px 0;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.modal-delete .btn-modal .delete-btn {
+    margin-left: 15px;
+    border: 1px solid rgb(172, 0, 0);
+    background-color: rgb(172, 0, 0);
+    color: #FFF;
+}
+
+.modal-delete .btn-modal .delete-btn:hover {
+    background-color: rgb(122, 1, 1);
+}
+
+.modal-delete .btn-modal .cancel-btn {
+    background-color:rgb(250, 250, 250);
+    border: 1px solid rgb(206, 206, 206);
+}
+
+.modal-delete .btn-modal .cancel-btn:hover {
+    background-color:rgb(206, 206, 206);
+}
