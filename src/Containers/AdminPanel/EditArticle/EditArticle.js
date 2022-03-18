@@ -24,6 +24,7 @@ export default function EditArticle() {
 
     const [image, setImage] = useState(urlImage);
     const [previewImage, setPreviewImage] = useState(srcImage);
+    const [imageChanged, setImageChanged] = useState(false);
 
     const [loading, setLoading] = useState(false);
 
@@ -80,6 +81,7 @@ export default function EditArticle() {
             if (validationImage(newImage)) {
                 setPreviewImage(URL.createObjectURL(newImage));
                 setImage(newImage);
+                setImageChanged(true);
             }
         }
     }
@@ -98,15 +100,21 @@ export default function EditArticle() {
       setLoading(true);
 
       try {
-        // delete old image
-        const oldImageRef = ref(storage, urlImage);
-        await deleteObject(oldImageRef).catch((err) => console.log(err));
-        // create URL new image
-        const urlNewImage = '/images/' + image.name.substring(0, image.name.length - 4) + '-' + uuidv4();
-        // create a reference to the image to be uploaded
-        const newImageRef = ref(storage, urlNewImage);
-        // upload the image
-        await uploadBytes(newImageRef, image);
+        let urlNewImage;
+        if (imageChanged) {
+            // delete old image
+            const oldImageRef = ref(storage, urlImage);
+            await deleteObject(oldImageRef).catch((err) => console.log(err));
+            // create URL new image
+            urlNewImage = '/images/' + image.name.substring(0, image.name.length - 4) + '-' + uuidv4();
+            // create a reference to the image to be uploaded
+            const newImageRef = ref(storage, urlNewImage);
+            // upload the image
+            await uploadBytes(newImageRef, image);
+        }
+        else {
+            urlNewImage = urlImage;
+        }
 
         // update article in the db
         const articleRef = doc(db, "articles", id)

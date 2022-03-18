@@ -15,4 +15,3 @@ The goal of the project is to train me in React. Blog Tiramisu allows me to lear
 - [x] Editor with toolbar for writing article
 - [x] Dashboard for admin with private routes (user authenticated)
 - [x] Validation forms
-- [ ] Contact page with sending emails
