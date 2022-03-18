@@ -11,10 +11,10 @@ export default function Footer() {
               <Link to="/">Recettes</Link>
           </li>
           <li className="footer-menu-item">
-              <Link to="/a-propos">À propos</Link>
+              <Link to="/contact">Contact</Link>
           </li>
           <li className="footer-menu-item">
-              <Link to="/contact">Contact</Link>
+              <Link to="/tb-admin/home">Rédac'</Link>
           </li>
       </ul>
       <Link to="/" className="logo">

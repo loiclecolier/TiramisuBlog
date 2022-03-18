@@ -7,7 +7,6 @@ import Home from './Containers/Home/Home'
 import AddArticle from './Containers/AdminPanel/AddArticle/AddArticle'
 import Contact from './Containers/Contact/Contact'
 import Article from './Containers/Article/Article'
-import About from './Containers/About/About'
 import NotFound from './Containers/NotFound/NotFound'
 import LogOut from './Components/LogOut/LogOut'
 import { UserContext } from './context/userContext'
@@ -31,7 +30,6 @@ function App() {
       <div className="content">
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/a-propos" element={<About/>}/>
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/articles/:slug" element={<Article/>}/>
           <Route path="/tb-admin" element={<RedirectUser/>}>
